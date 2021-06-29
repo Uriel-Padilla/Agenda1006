@@ -24,6 +24,7 @@ namespace Agenda1006.View
         {
             var layaut = (BindableObject)sender;
             var item = (ContactoModel)layaut.BindingContext;
+            await Navigation.PushAsync(new ContactoDetalle(new ContactoDetalleViewModel(item)));
         }
     }
 }
