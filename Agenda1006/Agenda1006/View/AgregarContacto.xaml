@@ -5,14 +5,23 @@
              Title ="Nuevo Contacto">
 
     <ContentPage.ToolbarItems >
-        <ToolbarItem Text="Cancelar"/>
-        <ToolbarItem Text="Guardar"/>
+        <ToolbarItem Text="Cancelar" Clicked="clickCancelar"/>
+        <ToolbarItem Text="Guardar" Clicked="clickGuardar"/>
     </ContentPage.ToolbarItems>    
         <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Nombre" FontSize="Medium" />
+            <Entry Text="{Binding contactoModel.nombreContacto}" FontSize="Small" Placeholder="Nombre"  />
+            <Label Text="Apellidos" FontSize="Medium" />
+            <Entry Text="{Binding contactoModel.apellidos}" FontSize="Small" Placeholder="Apellidos"  />
+            <Label Text="Número" FontSize="Medium" />
+            <Entry Text="{Binding contactoModel.numeroTelefono}" FontSize="Small" Placeholder="Número"  />
+            <Label Text="Tipo" FontSize="Medium" />
+            <Picker Title="Tipo de número" ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding contactoModel.tipoNumero, Mode=TwoWay}" />
+            <Label Text="Email" FontSize="Medium" />
+            <Entry Text="{Binding contactoModel.correoElectronico}" FontSize="Small" Placeholder="Email"  />
+            <Label Text="Dirección" FontSize="Medium" />
+            <Entry Text="{Binding contactoModel.direccion}" FontSize="Small" Placeholder="Dirección"  />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

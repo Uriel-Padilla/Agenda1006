@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agenda1006.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,38 @@ namespace Agenda1006.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AgregarContacto : ContentPage
     {
+
+        ContactoModel contactoModel { get; set; }
         public AgregarContacto()
         {
             InitializeComponent();
+            contactoModel = new ContactoModel
+            {
+                nombreContacto = "",
+                apellidos = "",
+                numeroTelefono = null,
+                tipoNumero = null,
+                correoElectronico = "",
+                direccion = ""
+            };
+            BindingContext = this;
+
         }
+        async void clickCancelar(object sender, EventArgs e)
+        {
+
+        }
+        async void clickGuardar(object sender, EventArgs e)
+        {
+
+        }
+
+        public IList<string> TiposTelefono {
+            get
+            {
+                return new List<string> { "Móvil", "Casa", "Trabajo" };
+            }
+        }
+
     }
 }
