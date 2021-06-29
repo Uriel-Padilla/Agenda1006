@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agenda1006.View.AgregarContacto"
+             Title ="Nuevo Contacto">
+
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="Cancelar"/>
+        <ToolbarItem Text="Guardar"/>
+    </ContentPage.ToolbarItems>    
+        <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
