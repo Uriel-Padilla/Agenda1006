@@ -42,6 +42,16 @@ namespace Agenda1006.ViewModels
                 {
                     Contactos.Add(item);
                 }
+                var contacto = new ContactoModel
+                {
+                    nombreContacto = "Jose",
+                    apellidos = "Gomez",
+                    numeroTelefono = "9510101011",
+                    tipoNumero = "Movil",
+                    correoElectronico = "benito@gmail.com",
+                    direccion = "Miahuatlan"
+                };
+                Contactos.Add(contacto);
             }
             catch(Exception e)
             {

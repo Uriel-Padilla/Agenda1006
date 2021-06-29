@@ -20,5 +20,10 @@ namespace Agenda1006.View
         {
             await Navigation.PushModalAsync(new NavigationPage(new AgregarContacto()));
         }
+        async void OnItemSelected(object sender, EventArgs e)
+        {
+            var layaut = (BindableObject)sender;
+            var item = (ContactoModel)layaut.BindingContext;
+        }
     }
 }
