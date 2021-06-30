@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
 
 namespace Agenda1006.View
 {
@@ -49,14 +48,14 @@ namespace Agenda1006.View
 
         async void clickSubirImagen(object sender, EventArgs e)
         {
-            var pickResult = FilePicker.PickAsync(new PickOptions
+            var result = await FilePicker.PickAsync(new PickOptions
             {
                 FileTypes = FilePickerFileType.Images,
                 PickerTitle = "Selecciona una imagen"
             });
-            if (pickResult != null)
-            { 
-                var stream = await pickResult.O;
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync();
                 resultImage.Source = ImageSource.FromStream(() => stream);
             }
         }
