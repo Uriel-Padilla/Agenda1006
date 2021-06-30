@@ -1,5 +1,6 @@
 ﻿using Agenda1006.Models;
 using Agenda1006.Service;
+using Agenda1006.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,12 @@ namespace Agenda1006.ViewModels
             Titulo = "Agenda de contactos";
             Contactos = new ObservableCollection<ContactoModel>();
             CargarContactos = new Command(async () => await ExecuteLoadItemsCommand());
+            MessagingCenter.Subscribe<AgregarContacto, ContactoModel>(this, "Agregarcontacto", async (obj, item) =>
+            {
+                var newItem = item as ContactoModel;
+                Contactos.Add(newItem);
+                await ContactoViewModel.ContactoService.guardarContacto(newItem);
+            });
         }
         public static ContactoService ContactoService {
             get{ 

@@ -32,11 +32,12 @@ namespace Agenda1006.View
         }
         async void clickCancelar(object sender, EventArgs e)
         {
-
+            await Navigation.PopModalAsync();
         }
         async void clickGuardar(object sender, EventArgs e)
         {
-
+            MessagingCenter.Send(this, "Agregarcontacto", contactoModel);
+            await Navigation.PopModalAsync();
         }
 
         public IList<string> TiposTelefono {
