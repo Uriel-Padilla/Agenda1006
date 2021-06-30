@@ -11,6 +11,8 @@
 
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
+            <Image x:Name="resultImage"/>
+            <Button Text="Subir Imagen" Clicked="clickSubirImagen"/>
             <Label Text="Nombre" FontSize="Medium" />
             <Entry Text="{Binding contactoModel.nombreContacto}" FontSize="Small" Placeholder="Nombre"  />
             <Label Text="Apellidos" FontSize="Medium" />
