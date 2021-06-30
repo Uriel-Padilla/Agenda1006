@@ -17,7 +17,7 @@
         <Label Text="Tipo:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
         <Label Text="{Binding Contacto.tipoNumero}" FontSize="Small"/>
         <Label Text="Correo Electrónico:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
-        <Label Text="{Binding Contacto.correoElelectronico}" FontSize="Small"/>
+        <Label Text="{Binding Contacto.correoElectronico}" FontSize="Small"/>
         <Label Text="Dirección:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
         <Label Text="{Binding Contacto.direccion}" FontSize="Small"/>
     </StackLayout>
