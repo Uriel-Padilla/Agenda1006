@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Agenda1006.View.ContactoDetalle"
-             Title="Binding Titulo">
+             Title="{Binding Titulo}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Modificar" Clicked="clicModificar" />
         <ToolbarItem Text="Eliminar" Clicked="clicEliminar" />
@@ -17,7 +17,7 @@
         <Label Text="Tipo:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
         <Label Text="{Binding Contacto.tipoNumero}" FontSize="Small"/>
         <Label Text="Correo Electrónico:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
-        <Label Text="{Binding Contacto.correoElectronico}" FontSize="Small"/>
+        <Label Text="{Binding Contacto.correoElelectronico}" FontSize="Small"/>
         <Label Text="Dirección:" FontSize="Large" TextColor="#4169e1" Font="Bold"/>
         <Label Text="{Binding Contacto.direccion}" FontSize="Small"/>
     </StackLayout>

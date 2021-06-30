@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Agenda1006.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : TabbedPage
     {
         public MainPage()

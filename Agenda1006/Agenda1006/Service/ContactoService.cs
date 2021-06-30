@@ -30,7 +30,6 @@ namespace Agenda1006.Service
             }
             else
             {
-
                 return db.UpdateAsync(Contacto);
             }
 

@@ -15,52 +15,75 @@ namespace Agenda1006.ViewModels
     public class ContactoViewModel : Base
     {
         public ObservableCollection<ContactoModel> Contactos { get; set; }
-        public Command CargarContactos{ get; set;}
+        public Command CargarContactos { get; set; }
         public static ContactoService servicio;
         public ContactoViewModel()
         {
             Titulo = "Agenda de contactos";
             Contactos = new ObservableCollection<ContactoModel>();
-            CargarContactos = new Command(async () => await ExecuteLoadItemsCommand());
-            MessagingCenter.Subscribe<AgregarContacto, ContactoModel>(this, "Agregarcontacto", async (obj, item) =>
+            CargarContactos = new Command(async () => await CargarContactosCommand());
+
+            MessagingCenter.Subscribe<AgregarContacto, ContactoModel>(this, "Agregarcontacto", async (obj, contacto) =>
             {
-                var newItem = item as ContactoModel;
-                Contactos.Add(newItem);
-                await ContactoViewModel.ContactoService.guardarContacto(newItem);
+                var newContacto = contacto as ContactoModel;
+                Contactos.Add(newContacto);
+                await ContactoViewModel.ContactoService.guardarContacto(newContacto);
+            });
+
+            //Modificar el contacto
+            MessagingCenter.Subscribe<ModificarContacto, ContactoModel>(this, "Agregarcontacto", async (obj, contacto) =>
+            {
+                var newContacto = contacto as ContactoModel;
+                for (int i = 0; i < Contactos.Count; i++)
+                {
+                    if (Contactos[i].contactoID == newContacto.contactoID)
+                        Contactos[i] = newContacto;
+                }
+                await ContactoViewModel.ContactoService.guardarContacto(newContacto);
+            });
+
+            MessagingCenter.Subscribe<ContactoPage, ContactoModel>(this, "Eliminarcontacto", async (obj, contacto) =>
+            {
+                var newContacto = contacto as ContactoModel;
+
+                foreach (var items in Contactos)
+                {
+                    if (items.contactoID == newContacto.contactoID)
+                    {
+                        Contactos.Remove(items);
+                        break;
+                    }
+                }
+                await ContactoViewModel.ContactoService.eliminarContacto(newContacto);
             });
         }
-        public static ContactoService ContactoService {
-            get{ 
-                if(servicio == null)
+
+        public static ContactoService ContactoService
+        {
+            get
+            {
+                if (servicio == null)
                 {
                     servicio = new ContactoService(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contactos.db3"));
                 }
                 return servicio;
             }
         }
-        async Task ExecuteLoadItemsCommand()
+
+        async Task CargarContactosCommand()
         {
             IsBusy = true;
             try
             {
                 Contactos.Clear();
                 var Items = await ContactoViewModel.ContactoService.obtenerContactos();
-                foreach(var item in Items)
+                foreach (var item in Items)
                 {
                     Contactos.Add(item);
                 }
-                var contacto = new ContactoModel
-                {
-                    nombreContacto = "Jose",
-                    apellidos = "Gomez",
-                    numeroTelefono = "9510101011",
-                    tipoNumero = "Movil",
-                    correoElectronico = "benito@gmail.com",
-                    direccion = "Miahuatlan"
-                };
-                Contactos.Add(contacto);
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
@@ -68,7 +91,7 @@ namespace Agenda1006.ViewModels
             {
                 IsBusy = false;
             }
-            
+
         }
 
     }

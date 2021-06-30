@@ -1,16 +1,22 @@
-﻿using Agenda1006.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Agenda1006.Models;
 using Xamarin.Forms;
 
 namespace Agenda1006.View
 {
-    public partial class AgregarContacto : ContentPage
+    public partial class ModificarContacto : ContentPage
     {
-
         public ContactoModel contactoModel { get; set; }
 
-        public AgregarContacto()
+        public ModificarContacto(ContactoModel contacto)
+        {
+            InitializeComponent();
+            contactoModel = contacto;
+            BindingContext = this;
+        }
+
+        public ModificarContacto()
         {
             InitializeComponent();
             contactoModel = new ContactoModel
@@ -23,14 +29,12 @@ namespace Agenda1006.View
                 direccion = ""
             };
             BindingContext = this;
-
         }
 
         async void clickCancelar(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
-
         async void clickGuardar(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "Agregarcontacto", contactoModel);
@@ -44,6 +48,5 @@ namespace Agenda1006.View
                 return new List<string> { "Móvil", "Casa", "Trabajo" };
             }
         }
-
     }
 }
